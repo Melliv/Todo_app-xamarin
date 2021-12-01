@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:todo="clr-namespace:todo_app_xamarin.screens.todo;assembly=todo_app_xamarin"
+             x:Class="todo_app_xamarin.screens.todo.TodoPage"
+             x:Name="TodoPagep"
+             BackgroundColor="White"
+             Title="Tasks">
+
+    <ContentPage.Resources>
+        <todo:ColorConverter x:Key="YesNoMaybeToColorConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <todo:TodoPageVM />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Margin="20,20,20,20">
+                
+                <Label
+                    Text="{Binding Category.CategoryName}"
+                    FontSize="28"
+                    HorizontalOptions="Center" />
+                
+                <Frame
+                    BorderColor="DodgerBlue"
+                    Padding="1"
+                    Margin="0,0,0,10">
+                    <StackLayout
+                        BackgroundColor="LightSkyBlue"
+                        Orientation="Vertical">
+                        <StackLayout
+                            Padding="20,10,20,10">
+                            <Label
+                                Text="Create Todo"
+                                HorizontalOptions="Center"
+                                FontSize="28" />
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Editor
+                                    Text="{Binding Todo.TaskName}"
+                                    Placeholder="Description"
+                                    HorizontalOptions="FillAndExpand" />
+                                <Button
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill" Text="+"
+                                    Command="{Binding TodoAddCom }"
+                                    BackgroundColor="LightSalmon"
+                                    BorderColor="DarkGray"
+                                    BorderWidth="2">
+                                    <Button.WidthRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="60" Tablet="80" />
+                                    </Button.WidthRequest>
+                                    <Button.HeightRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="60" Tablet="80" />
+                                    </Button.HeightRequest>
+                                    <Button.BorderRadius>
+                                        <OnIdiom x:TypeArguments="x:Int32" Phone="30" Tablet="40" />
+                                    </Button.BorderRadius>
+                                </Button>
+                            </StackLayout>
+                            <Label Text="{Binding TodoValidation.TaskName }" TextColor="Red" />
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Picker
+                                    HorizontalOptions="FillAndExpand"
+                                    Title="Priority"
+                                    ItemsSource="{Binding Priorities}"
+                                    ItemDisplayBinding="{Binding PriorityName}"
+                                    SelectedItem="{Binding Priority}" />
+                                <Button
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Text="Priorities"
+                                    Command="{Binding PrioritiesCom }"
+                                    BackgroundColor="LightSalmon"
+                                    BorderColor="DarkGray"
+                                    BorderWidth="2"
+                                    CornerRadius="20" />
+                            </StackLayout>
+                            <Label Text="{Binding TodoValidation.Priority }" TextColor="Red" />
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="Start">
+                                <Label Text="Sort by:" FontSize="24" />
+                                <Button
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill" Text="Done"
+                                    Command="{Binding SortCompletedCom}"
+                                    BackgroundColor="LightSalmon"
+                                    BorderColor="DarkGray"
+                                    BorderWidth="2"
+                                    CornerRadius="20" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <CollectionView
+                    ItemsSource="{Binding Todos}">
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItem
+                                        Text="Edit" BackgroundColor="Orange"
+                                        Command="{Binding Source={x:Reference TodoPagep}, Path=BindingContext.TodoEditCom}"
+                                        CommandParameter="{Binding .}" />
+                                    <SwipeItem
+                                        Text="Delete" BackgroundColor="Red"
+                                        Command="{Binding Source={x:Reference TodoPagep}, Path=BindingContext.TodoDeleteCom}"
+                                        CommandParameter="{Binding .}" />
+                                </SwipeView.LeftItems>
+                                <Frame BorderColor="DodgerBlue"
+                                       Padding="1"
+                                       Margin="5">
+                                    <StackLayout
+                                        BackgroundColor="{Binding IsCompleted, Converter={StaticResource YesNoMaybeToColorConverter}}"
+                                        Padding="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={x:Reference TodoPagep}, Path=BindingContext.TodoClickCom}"
+                                                CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                        <Label
+                                            Text="{Binding TaskName}"
+                                            FontSize="20"
+                                            TextColor="Brown" />
+                                    </StackLayout>
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

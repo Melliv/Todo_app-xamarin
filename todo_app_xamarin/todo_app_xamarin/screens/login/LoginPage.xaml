@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:login="clr-namespace:todo_app_xamarin.screens.login;assembly=todo_app_xamarin"
+             Title="Login"
+             x:Class="todo_app_xamarin.screens.login.LoginPage"
+             BackgroundColor="#FF195860">
+    <ContentPage.BindingContext>
+        <login:LoginPageVM />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     Padding="20,20,20,0">
+            
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="End">
+                <Button
+                    Text="Offline Mode"
+                    Command="{Binding OfflineMode}"
+                    BackgroundColor="LightSalmon"
+                    CornerRadius="20"
+                    BorderColor="DarkGray"
+                    BorderWidth="2" />
+            </StackLayout>
+            
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <Label
+                    Text="No Internet Connection!"
+                    FontSize="28"
+                    TextColor="Red"
+                    IsVisible="{Binding HaveNoConnection}" />
+            </StackLayout>
+            
+            <Label Text="Email" TextColor="White" />
+            <Entry Text="{Binding Login.Email}" TextColor="White" />
+            <Label Text="{Binding LoginValidation.Email}" TextColor="Red" />
+            <Label Text="Password" TextColor="White" />
+            <Entry Text="{Binding Login.Password}" TextColor="White" IsPassword="True" />
+            <Label Text="{Binding LoginValidation.Password}" TextColor="Red" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button
+                    Text="Log In"
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="LightSalmon"
+                    CornerRadius="20"
+                    BorderColor="DarkGray"
+                    BorderWidth="2" />
+            </StackLayout>
+
+            <Label HorizontalOptions="Center" Padding="5">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            Text="Sign In"
+                            TextColor="Blue"
+                            FontSize="14"
+                            FontAttributes="Bold">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

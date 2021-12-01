@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:category="clr-namespace:todo_app_xamarin.screens.category;assembly=todo_app_xamarin"
+             x:Class="todo_app_xamarin.screens.category.CategoryPage"
+             x:Name="CategoryPagep"
+             BackgroundColor="White"
+             Title="Category">
+
+    <ContentPage.BindingContext>
+        <category:CategoryPageVM />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Margin="20,20,20,20">
+                <Frame
+                    BorderColor="DodgerBlue"
+                    Padding="1"
+                    Margin="0,0,0,10">
+                    <StackLayout
+                        BackgroundColor="LightSkyBlue"
+                        Orientation="Vertical">
+                        <StackLayout
+                            Padding="20,20,20,0">
+                            <Label
+                                Text="Create Category"
+                                HorizontalOptions="Center"
+                                FontSize="28" />
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Editor
+                                    Text="{Binding Category.CategoryName}"
+                                    Placeholder="Category Name"
+                                    HorizontalOptions="FillAndExpand" />
+                                <Button
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill" Text="+"
+                                    Command="{Binding AddCategoryCom }"
+                                    BackgroundColor="LightSalmon"
+                                    BorderColor="DarkGray"
+                                    BorderWidth="2">
+                                    <Button.WidthRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="60" Tablet="80" />
+                                    </Button.WidthRequest>
+                                    <Button.HeightRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="60" Tablet="80" />
+                                    </Button.HeightRequest>
+                                    <Button.BorderRadius>
+                                        <OnIdiom x:TypeArguments="x:Int32" Phone="30" Tablet="40" />
+                                    </Button.BorderRadius>
+                                </Button>
+                            </StackLayout>
+                            <Label Text="{Binding CategoryValidation.CategoryName}" TextColor="Red" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <CollectionView
+                    ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="5">
+                                <Frame BorderColor="DodgerBlue"
+                                       Padding="1">
+                                    <StackLayout
+                                        BackgroundColor="LightSkyBlue"
+                                        Padding="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={x:Reference CategoryPagep}, Path=BindingContext.CategoryClick}"
+                                                CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                        <Label
+                                            Text="{Binding CategoryName}"
+                                            FontSize="20"
+                                            TextColor="Brown" />
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:register="clr-namespace:todo_app_xamarin.screens.register;assembly=todo_app_xamarin"
+             x:Class="todo_app_xamarin.screens.register.RegisterPage"
+             Title="Register"
+             BackgroundColor="#FF195860">
+    <ContentPage.BindingContext>
+        <register:RegisterPageVM />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
+                         Padding="20,20,20,0">
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text="No Internet Connection!"
+                        FontSize="28"
+                        TextColor="Red"
+                        IsVisible="{Binding HaveNoConnection}" />
+                </StackLayout>
+                
+                <Label Text="First name" TextColor="White" />
+                <Editor Text="{Binding Register.FirstName}" TextColor="White" />
+                <Label Text="{Binding RegisterValidation.FirstName}" TextColor="Red" />
+                <Label Text="Last name" TextColor="White" />
+                <Editor Text="{Binding Register.LastName}" TextColor="White" />
+                <Label Text="{Binding RegisterValidation.LastName}" TextColor="Red" />
+                <Label Text="Email" TextColor="White" />
+                <Editor Text="{Binding Register.Email}" TextColor="White" />
+                <Label Text="{Binding RegisterValidation.Email}" TextColor="Red" />
+                <Label Text="Password" TextColor="White" />
+                <Entry Text="{Binding Register.Password}" TextColor="White" IsPassword="True" />
+                <Label Text="{Binding RegisterValidation.Password}" TextColor="Red" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button
+                        Text="Sign In"
+                        Command="{Binding RegisterCommand}"
+                        BackgroundColor="White"
+                        CornerRadius="10"
+                        BorderColor="DarkBlue"
+                        BorderWidth="1" />
+                </StackLayout>
+
+                <Label HorizontalOptions="Center" Padding="5">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Log In" TextColor="Blue">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClickCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/bin/Debug/netstandard2.0/DAL.deps.json
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/bin/Debug/netstandard2.0/DAL.dll
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/bin/Debug/netstandard2.0/DAL.pdb
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/bin/Debug/netstandard2.0/Domain.dll
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/bin/Debug/netstandard2.0/Domain.pdb
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.csprojAssemblyReference.cache
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.AssemblyInfoInputs.cache
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.AssemblyInfo.cs
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.csproj.CoreCompileInputs.cache
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.csproj.CopyComplete
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.dll
+/home/melliv/hybrid_mobile/icd0018-2021f/todo_app_xamarin/DAL/obj/Debug/netstandard2.0/DAL.pdb
